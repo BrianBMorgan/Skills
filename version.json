@@ -1,0 +1,71 @@
+{
+    "engine": {
+        "version": "2.1.0",
+        "changelog": [
+            {
+                "version": "2.1.0",
+                "date": "2025-03-05",
+                "changes": [
+                    "新增模式十：管理技能文件夹（新建/删除分类文件夹、移动技能、查看分类结构）",
+                    "skills/ 目录支持分级存储，技能可按分类文件夹组织",
+                    "所有模式适配 path 字段定位技能，兼容平铺和嵌套结构",
+                    "模式四（上传）自动询问分类归属",
+                    "模式六（列出）按分类分组展示"
+                ]
+            },
+            {
+                "version": "2.0.0",
+                "date": "2025-03-04",
+                "changes": [
+                    "IDE 智能分仓：OpenClaw 默认 my-skills-claw，开发 IDE 默认 my-skills-dev",
+                    "版本自动检查：引擎 + 基础设施双通道更新",
+                    "OpenClaw workspace 集成：安装时自动配置 TOOLS.md 和 AGENTS.md",
+                    "模板清理：新建仓库自动移除 loader/ 和 init.sh"
+                ]
+            },
+            {
+                "version": "1.0.0",
+                "date": "2025-03-03",
+                "changes": [
+                    "初始版本：九大操作模式",
+                    "支持 Antigravity / Claude Code / Cursor / OpenClaw 四大 IDE",
+                    "全局配置 + Token 自动发现",
+                    "GitHub Template API 一键创建私有仓库"
+                ]
+            }
+        ]
+    },
+    "infra": {
+        "version": "1.2.0",
+        "files": [
+            "generate-index.js",
+            ".github/workflows/build-index.yml"
+        ],
+        "changelog": [
+            {
+                "version": "1.2.0",
+                "date": "2025-03-09",
+                "changes": [
+                    "build-index.yml 新增 git pull --rebase 防止并发推送冲突",
+                    "修复多文件操作（移动/删除技能）触发多个 Actions 时 push 被拒绝的问题"
+                ]
+            },
+            {
+                "version": "1.1.0",
+                "date": "2025-03-05",
+                "changes": [
+                    "generate-index.js 支持递归扫描 skills/ 下的分类子文件夹",
+                    "index.json 新增 category 和 path 字段",
+                    "向下兼容平铺结构（category 为空字符串）"
+                ]
+            },
+            {
+                "version": "1.0.0",
+                "date": "2025-03-03",
+                "changes": [
+                    "初始版本：零依赖索引生成 + GitHub Actions 自动构建"
+                ]
+            }
+        ]
+    }
+}

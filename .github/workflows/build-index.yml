@@ -1,0 +1,43 @@
+name: Build Skills Index
+
+on:
+  push:
+    paths:
+      - 'skills/**'
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+# Only run one instance at a time; cancel older runs
+concurrency:
+  group: build-index
+  cancel-in-progress: true
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Generate index.json
+        run: node generate-index.js
+
+      - name: Commit and push index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          # Only commit if there are changes
+          git diff --staged --quiet || git commit -m "chore: auto-update index.json"
+          # Retry push with pull-rebase up to 3 times
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break || sleep 2
+          done
