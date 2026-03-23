@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "name": "Instructions",
+    "description": "Agent Instructions",
+    "category": "",
+    "path": "Instructions",
+    "file": "Instructions/SKILL.md",
+    "files": [
+      "Instructions/SKILL.md"
+    ]
+  }
+]
