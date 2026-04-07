@@ -1,1 +1,13 @@
-
+{
+  "name": "skills-relay",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "relay.js",
+  "scripts": {
+    "start": "node relay.js"
+  },
+  "dependencies": {
+    "express": "^4",
+    "cors": "^2"
+  }
+}
