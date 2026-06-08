@@ -1,6 +1,6 @@
 // safeParseLLM — robust JSON parser for LLM output.
-// Lifted verbatim from Forge Intelligence's server.js. Self-contained: just
-// safeParseLLM + its one dependency (extractJSON). No npm deps, no imports.
+// Self-contained: just safeParseLLM + its one dependency (extractJSON). 
+// No npm deps, no imports.
 //
 // Why this exists: LLMs that are told "return ONLY valid JSON" still emit
 // markdown fences, smart-quote/zero-width junk, raw newlines inside string
@@ -15,9 +15,9 @@
 //             repair but it mangles the final key/value often enough that you
 //             should NOT rely on it. If you expect truncation (large outputs
 //             near max_tokens), pair this with a dedicated bracket-balancer, or
-//             better, raise max_tokens / ask the model to be terser. Forge
-//             handles truncation with a separate inline balancer in its content
-//             generator, not here.
+//             better, raise max_tokens / ask the model to be terser. For
+//             truncation handling, consider a separate inline balancer or
+//             increase token limits upstream.
 //
 // Usage:
 //   import { safeParseLLM } from './safeParseLLM.js';
@@ -70,7 +70,7 @@ export function extractJSON(text, type = 'object') {
   return null;
 }
 
-// Not a library. Not an npm package. Just a dev who got tired of Claude's newlines.
+// A practical solution to messy LLM output parsing.
 // ── Shared LLM JSON parser — sanitise + recover ──────────────────────────────
 export function safeParseLLM(raw, type = 'object', caller = 'unknown') {
   const stripped = raw
